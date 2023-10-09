@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+
 # Create your views here.
 def cadastro(request):
     if request.method == "GET":
@@ -20,7 +21,7 @@ def cadastro(request):
             return redirect('/usuarios/cadastro')
         
         if len(senha) < 6:
-            messages.add_message(request, constants.ERROR, 'Sua senha deve ter 7 ou mais caracteres !!!') 
+            messages.add_message(request, constants.ERROR, 'Sua senha deve ter 7 ou mais caracteres') 
             return redirect('/usuarios/cadastro')
         
         try:
