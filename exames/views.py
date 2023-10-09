@@ -77,9 +77,10 @@ def gerenciar_exames(request):
 @login_required
 def permitir_abrir_exame(request, exame_id):
     exame = SolicitacaoExame.objects.get(id=exame_id)
-		#TODO: validar se o exame é do usuário
+		
     if not exame.requer_senha:
-        # verificar se o pdf existe
+        if not exame.resultado:
+            return redirect('/exames/solicitar_exames/')
         return redirect(exame.resultado.url)
 
     else: 
